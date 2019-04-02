@@ -21,7 +21,7 @@ let sortChange;
       let cb = getRecords(data);
       getPagination(data.length, records, cb);
       loadPaginatedRecords(currentPage, records, cb);
-  
+      
     });  
   }
 
@@ -124,6 +124,7 @@ let sortChange;
   }
 
   function loadPaginatedRecords (i, records, cb) {
+    document.getElementById(`li${currentPage}`).classList.remove('active');
     currentPage = i;
     document.getElementById("main-content").innerHTML = "";
     let currentRecords = cb(i, records);
@@ -138,7 +139,8 @@ let sortChange;
         pTag.appendChild(span);
       }
       node.appendChild(pTag);
-      document.getElementById("main-content").appendChild(node)
+      document.getElementById("main-content").appendChild(node);
+      document.getElementById(`li${currentPage}`).classList.add('active');
     }
   }
 
